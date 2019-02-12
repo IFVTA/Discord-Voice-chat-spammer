@@ -1,6 +1,9 @@
 # Discord-Voice-chat-spammer
 Has 10 tokens join a channel and play music from youtube.
 
+# You need FFmpeg!
+Download that here: https://ffmpeg.zeranoe.com/builds/
+
 
 The bots need to be on the server for this to work.
 
