@@ -1,3 +1,4 @@
+import os
 import time
 import discord
 import asyncio
@@ -8,19 +9,35 @@ from token2 import*
 from token3 import*
 from token4 import*
 from token5 import*
-from token6 import *
-from token7 import *
-from token8 import *
-from token9 import *
-from token10 import *
+from token6 import*
+from token7 import*
+from token8 import*
+from token9 import*
+from token10 import*
+from threading import Thread
+from queue import Queue
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
-from threading import Thread
-from queue import Queue
+
+youtlink = input ('YouTube Link for the bots to play (empty = last played song is used): ')
+chanid = input ('Voice channel ID for the bots to join (empty = last used channel is used): ')
+delay = input ('Joining delay(t/f): ')
+if youtlink == "":
+    print ("Using last YouTube Link")
+else:
+    with open('youtubelink.txt','w+') as handle:
+        handle.write(youtlink)
+
+if chanid == "":
+    print ("Using last Channel ID")
+else:
+    with open('channelid.txt','w+') as handle:
+        handle.write(chanid)
+            
 
 class Worker(Thread):
     """
@@ -73,45 +90,57 @@ class ThreadPool:
         self.tasks.join()
 
 def one():
-    time.sleep(1)
+    if delay == "t":
+        time.sleep(1)
     client1.run(token1, bot=False)
 
 def two():
-    time.sleep(2)
+    if delay == "t":
+        time.sleep(2)
     client2.run(token2, bot=False)
 
 def three():
-    time.sleep(3)
+    if delay == "t":
+        time.sleep(3)
     client3.run(token3, bot=False)
 
 def four():
-    time.sleep(4)
+    if delay == "t":
+        time.sleep(4)
     client4.run(token4, bot=False)
 
 def five():
-    time.sleep(5)
+    if delay == "t":
+        time.sleep(5)
     client5.run(token5, bot=False)
 
 def six():
-    time.sleep(6)
+    if delay == "t":
+        time.sleep(6)
     client6.run(token6, bot=False)
 
 def seven():
-    time.sleep(7)
+    if delay == "t":
+        time.sleep(7)
     client7.run(token7, bot=False)
 
 def eight():
-    time.sleep(8)
+    if delay == "t":
+        time.sleep(8)
     client8.run(token8, bot=False)
 
 def nine():
-    time.sleep(9)
+    if delay == "t":
+        time.sleep(9)
     client9.run(token9, bot=False)
 
 def ten():
-    time.sleep(10)
+    if delay == "t":
+        time.sleep(10)
     client10.run(token10, bot=False)
-  
+
+
+print ("Logging in to tokens...")
 pool = ThreadPool(10)
 pool.add_task(one)
 pool.add_task(two)
@@ -124,6 +153,7 @@ pool.add_task(eight)
 pool.add_task(nine)
 pool.add_task(ten)
 pool.wait_completion()
+
 
 
 

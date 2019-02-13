@@ -1,19 +1,22 @@
 import discord
 import asyncio
 import youtube_dl
+import os
 
-token2 = 'TOKEN_HERE'
+
 client2 = discord.Client()
 
-d = open("channelid.txt", "r")
-f = open("youtubelink.txt", "r")
-yturl = str(f.readline())
-voice_id = str(d.readline())
-
+t = open("tokens.txt", "r")
+c = open("channelid.txt", "r")
+y = open("youtubelink.txt", "r")
+tokie = t.readlines()
+yturl = str(y.readline())
+voice_id = str(c.readline())
+token2 = tokie[2].rstrip()
 
 @client2.event
 async def on_ready():
-    print('Logged in!')
+    print('Token 2: Logged in!')
     await client2.loop.create_task(main())
 
 async def main():
