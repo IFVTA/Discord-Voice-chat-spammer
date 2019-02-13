@@ -4,16 +4,6 @@ import discord
 import asyncio
 import logging
 import youtube_dl
-from token1 import*
-from token2 import*
-from token3 import*
-from token4 import*
-from token5 import*
-from token6 import*
-from token7 import*
-from token8 import*
-from token9 import*
-from token10 import*
 from threading import Thread
 from queue import Queue
 
@@ -24,19 +14,33 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 youtlink = input ('YouTube Link for the bots to play (empty = last played song is used): ')
-chanid = input ('Voice channel ID for the bots to join (empty = last used channel is used): ')
-delay = input ('Joining delay(t/f): ')
 if youtlink == "":
     print ("Using last YouTube Link")
 else:
     with open('youtubelink.txt','w+') as handle:
         handle.write(youtlink)
+        handle.close()
 
+chanid = input ('Voice channel ID for the bots to join (empty = last used channel is used): ')
 if chanid == "":
     print ("Using last Channel ID")
 else:
     with open('channelid.txt','w+') as handle:
         handle.write(chanid)
+        handle.close()
+
+delay = input ('Joining delay(t/f): ')
+
+from token1 import*
+from token2 import*
+from token3 import*
+from token4 import*
+from token5 import*
+from token6 import*
+from token7 import*
+from token8 import*
+from token9 import*
+from token10 import*
             
 
 class Worker(Thread):
