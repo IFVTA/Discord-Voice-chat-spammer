@@ -2,17 +2,28 @@ import os
 import time
 import discord
 import asyncio
-import logging
 import youtube_dl
+import requests
 from threading import Thread
 from queue import Queue
 
-logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
-handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
+join = input('Do the Tokens need to join the server? (y/n)')
 
+if join == "y":
+    link = input('Discord Invite Link: ')
+    if len(link) > 6:
+        link = link[19:]
+    apilink = "https://discordapp.com/api/v6/invite/" + str(link)
+    print (link)
+    with open('tokens.txt','r') as handle:
+        tokens = handle.readlines()
+        for x in tokens:
+            token = x.rstrip()
+            headers={
+                'Authorization': token
+                }
+            requests.post(apilink, headers=headers)
+        print ("All tokens have joined!")
 youtlink = input ('YouTube Link for the bots to play (empty = last played song is used): ')
 if youtlink == "":
     print ("Using last YouTube Link")
